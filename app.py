@@ -138,9 +138,12 @@ if submitted:
 else:
     st.info("Tell me where you’re going and how long, and I’ll craft a short, emoji-sprinkled plan with daily ZAR estimates.")
 
-# ---------- Footer ----------
-st.markdown("---")
+# Footer
 st.markdown(
-    '<div class="trovule-small">Built with love for travelers. Your key stays private in env/secrets.</div>',
+    f"""
+    <div class="footer" style="text-align:center; margin-top:2rem; opacity:.8;">Created with love 💗 for travelers 🚗🗺.
+      <br/> Built by <a href="https://www.linkedin.com/in/ninankhwashu/" target="_blank">Nina Nkhwashu</a>.
+    </div>
+    """,
     unsafe_allow_html=True
 )
