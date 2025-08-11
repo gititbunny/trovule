@@ -1,9 +1,22 @@
+import base64
+from pathlib import Path
+import streamlit as st
+from dotenv import load_dotenv
 from pathlib import Path
 import streamlit as st
 from dotenv import load_dotenv
 from services.shecodes_client import current_weather, generate_itinerary, APIError
 from datetime import datetime
-year = datetime.now().year
+
+
+load_dotenv()
+ASSETS = Path(__file__).parent / "assets"
+
+def get_video_base64(path: Path) -> str:
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+
 
 
 load_dotenv()
@@ -141,6 +154,7 @@ else:
     st.info("Tell me where you’re going and how long, and I’ll craft a short, emoji-sprinkled plan with daily ZAR estimates.")
 
 # Footer
+year = datetime.now().year
 st.markdown(
     f"""
     <div class="footer" style="text-align:center; margin-top:2rem; opacity:.8;">Created with love 💗 for travelers 🚗🗺.
