@@ -2,6 +2,8 @@ from pathlib import Path
 import streamlit as st
 from dotenv import load_dotenv
 from services.shecodes_client import current_weather, generate_itinerary, APIError
+from datetime import datetime
+year = datetime.now().year
 
 
 load_dotenv()
@@ -20,7 +22,7 @@ st.markdown(
     <style>
       /* Global */
       .trovule-hero {
-        display:flex; gap:14px; align-items:center; justify-content:center; margin: 10px 0 4px 0;
+        display:flex; gap:14px; text-align: center; align-items:center; justify-content:center; margin: 10px 0 4px 0;
       }
       .trovule-title {
         font-size: 28px; font-weight: 800; letter-spacing:.5px;
@@ -142,7 +144,8 @@ else:
 st.markdown(
     f"""
     <div class="footer" style="text-align:center; margin-top:2rem; opacity:.8;">Created with love 💗 for travelers 🚗🗺.
-      <br/> Built by <a href="https://www.linkedin.com/in/ninankhwashu/" target="_blank">Nina Nkhwashu</a>.
+      <br/>  © {year} All rights reserved. Built by
+      <a href="https://www.linkedin.com/in/ninankhwashu/" target="_blank" rel="noopener">Nina Nkhwashu</a>.
     </div>
     """,
     unsafe_allow_html=True
