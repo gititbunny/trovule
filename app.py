@@ -92,7 +92,7 @@ st.markdown(
 
       /* Make Streamlit fully transparent where needed */
       html, body, [data-testid="stAppViewContainer"], .stApp, .main, [data-testid="block-container"] {{
-        background: transparent !important; color: #000000 !important; text-align:center; font-size:16px; list-style-tyle:none;
+        background: transparent !important; color: #000000 !important; text-align:center; font-size:16px;
       }}
       [data-testid="stToolbar"] {{ backdrop-filter: blur(6px); }}
       @media (min-width: 900px) {{
