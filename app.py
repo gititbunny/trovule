@@ -25,7 +25,7 @@ def b64(path: Path) -> str:
         return base64.b64encode(f.read()).decode("utf-8")
 
 def confetti():
-    # fire canvas-confetti once; height=0 to avoid extra space
+    # fire canvas-confetti once;
     components.html(
         """
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -107,23 +107,14 @@ st.markdown(
       .trovule-logo {{ width: 96px; height:auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.12)); }}
       .trovule-title {{ font-size: 32px; font-weight: 800; letter-spacing:.3px; color: #ADCB00; }}
       .trovule-sub {{
-        font-size: 14px; opacity:.9; margin-top:-2px;
+        font-size:16px; opacity:.9; margin-top:-2px;
         background: linear-gradient(90deg,#FFECB3,#FFF); padding: 4px 10px; border-radius: 999px;
         border: 1px dashed rgba(0,0,0,.06);
       }}
-
-      .trovule-card {{
-        background: rgba(255,255,255,0.9);
-        border: 1px solid rgba(0,0,0,.06);
-        border-radius: 18px;
-        padding: 22px;
-        box-shadow: 0 12px 30px rgba(0,0,0,.08);
-        backdrop-filter: blur(8px);
-      }}
-
+      
       .trovule-badge {{
         display:inline-block; padding:6px 12px; border-radius:999px;
-        background:#FFF6D9; border:1px solid #FFE3A3; color:#9A5A00; font-weight:700; font-size:12px;
+        background:#FFF6D9; border:1px solid #ADCB00; color:#9A5A00; font-weight:700; font-size:16px;
       }}
 
       .trovule-section-title {{ font-weight:700; font-size:16px; margin: 12px 0 6px 0; }}
@@ -149,7 +140,7 @@ st.markdown(
 
       /* Weather pills with dotted route */
       .trovule-pill {{
-        background:#FFFFFF; border:1px solid rgba(0,0,0,.06); border-radius:16px;
+        background:#BFDFF3; border:1px solid rgba(0,0,0,.06); border-radius:16px;
         padding:14px; box-shadow:0 6px 18px rgba(0,0,0,.06);
       }}
       .trovule-pill .name {{ font-weight:700; margin:2px 0 6px 0; }}
@@ -160,8 +151,9 @@ st.markdown(
       }}
       .trovule-emoji {{ font-size: 20px; margin-right:6px; }}
 
-      .trovule-itinerary {{ line-height:1.6; }}
-      .footer {{ text-align:center; margin-top:24px; opacity:.85; font-size:12px; }}
+      .trovule-itinerary {{ line-height:1.6; background:#EEE4BB; }}
+      .footer {{ text-align:center; margin-top:24px; font-size:16px; }}
+      .footer a {{ color: #ADCB00; text-decoration: none; }}
     </style>
 
     <!-- Header (logo → title → subtitle) -->
@@ -176,8 +168,6 @@ st.markdown(
 
 # ---------- Main Card (form + results) ----------
 with st.container():
-    st.markdown('<div class="trovule-card">', unsafe_allow_html=True)
-
     with st.form("trip_form", clear_on_submit=False):
         st.markdown('<span class="trovule-badge">Let’s plan your road trip</span>', unsafe_allow_html=True)
         st.markdown("")
@@ -234,11 +224,10 @@ with st.container():
                     # Itinerary card
                     st.markdown("")
                     st.markdown('<div class="trovule-section-title">Your blissful road trip plan</div>', unsafe_allow_html=True)
-                    st.markdown('<div class="trovule-card trovule-itinerary">', unsafe_allow_html=True)
                     st.markdown(md)  # Markdown from API
                     st.markdown('</div>', unsafe_allow_html=True)
 
-                    st.caption("Psst… prices are ZAR estimates and activities are suggestions—make it yours! 🧡")
+                    st.caption("Psst… prices are ZAR estimates and activities are suggestions...make it yours! 🧡")
 
                 except APIError as e:
                     st.error(str(e))
