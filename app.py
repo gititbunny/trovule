@@ -140,7 +140,7 @@ st.markdown(
 
       /* Weather pills with dotted route */
       .trovule-pill {{
-        background:#BFDFF3; border:1px solid rgba(0,0,0,.06); border-radius:16px;
+        background:#E9F3FF; border:1px solid rgba(0,0,0,.06); border-radius:16px;
         padding:14px; box-shadow:0 6px 18px rgba(0,0,0,.06);
       }}
       .trovule-pill .name {{ font-weight:700; margin:2px 0 6px 0; }}
