@@ -92,7 +92,7 @@ st.markdown(
 
       /* Make Streamlit fully transparent where needed */
       html, body, [data-testid="stAppViewContainer"], .stApp, .main, [data-testid="block-container"] {{
-        background: transparent !important; color: #000000 !important; text-align:center; font-size:16px;
+        background: transparent !important; color: #000000 !important; text-align:center; font-size:16px; list-style-tyle:none;
       }}
       [data-testid="stToolbar"] {{ backdrop-filter: blur(6px); }}
       @media (min-width: 900px) {{
@@ -117,7 +117,7 @@ st.markdown(
         background:#FFF6D9; border:1px solid #ADCB00; color:#9A5A00; font-weight:700; font-size:16px;
       }}
 
-      .trovule-section-title {{ font-weight:700; font-size:16px; margin: 12px 0 6px 0; }}
+      .trovule-section-title {{ font-weight:700; font-size:16px; margin: 12px 0 6px 0; margin-bottom:10px;}}
 
       /* Inputs & button polish */
       label {{ font-weight: 600; }}
