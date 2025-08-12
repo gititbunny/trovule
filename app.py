@@ -92,7 +92,7 @@ st.markdown(
 
       /* Make Streamlit fully transparent where needed */
       html, body, [data-testid="stAppViewContainer"], .stApp, .main, [data-testid="block-container"] {{
-        background: transparent !important;
+        background: transparent !important; color: #000000 !important;
       }}
       [data-testid="stToolbar"] {{ backdrop-filter: blur(6px); }}
       @media (min-width: 900px) {{
@@ -168,7 +168,7 @@ st.markdown(
     <div class="trovule-header">
       <img src="data:image/png;base64,{logo_b64}" class="trovule-logo" alt="Trovule logo" />
       <div class="trovule-title">Trovule</div>
-      <div class="trovule-sub">Happy, playful, and blissfully simple road trip planning — made just for you.</div>
+      <div class="trovule-sub">Happy, playful, and blissfully simple road trip planning, made just for you.</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -195,9 +195,9 @@ with st.container():
                     weather_o = current_weather(origin.strip())
                     weather_d = current_weather(destination.strip())
 
-                    # success copy (no balloons)
+                
                     st.success("Weather checked! Now crafting your itinerary…")
-                    confetti()  # <<— confetti, not balloons
+                    confetti()  
 
                     md = generate_itinerary(origin.strip(), destination.strip(), int(duration))
 
@@ -245,7 +245,7 @@ with st.container():
                 except Exception as e:
                     st.error(f"Unexpected error: {e}")
     else:
-        st.info("Tell me where you’re going and how long, and I’ll craft a short, emoji-sprinkled plan with daily ZAR estimates.")
+        st.info("Tell me where you’re going and how long, and I’ll craft a short, road trip plan with daily ZAR estimates.")
 
     st.markdown('</div>', unsafe_allow_html=True)
 
