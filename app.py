@@ -105,7 +105,7 @@ st.markdown(
         text-align:center; margin: 18px auto 8px auto;
       }}
       .trovule-logo {{ width: 96px; height:auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.12)); }}
-      .trovule-title {{ font-size: 32px; font-weight: 800; letter-spacing:.3px; }}
+      .trovule-title {{ font-size: 32px; font-weight: 800; letter-spacing:.3px; color: #ADCB00; }}
       .trovule-sub {{
         font-size: 14px; opacity:.9; margin-top:-2px;
         background: linear-gradient(90deg,#FFECB3,#FFF); padding: 4px 10px; border-radius: 999px;
