@@ -13,7 +13,7 @@ load_dotenv()
 ASSETS = Path(__file__).parent / "assets"
 
 st.set_page_config(
-    page_title="Trovule — Your Blissful Trip Buddy",
+    page_title="Trovule: Your Blissful Trip Buddy",
     page_icon=str(ASSETS / "icon.png"),
     layout="centered",
 )
