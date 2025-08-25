@@ -1,4 +1,3 @@
-# app.py — Trovule (Sunny Postcard redesign with permanent video bg + confetti)
 from pathlib import Path
 from datetime import datetime
 import base64
@@ -9,7 +8,7 @@ from dotenv import load_dotenv
 
 from services.shecodes_client import current_weather, generate_itinerary, APIError
 
-# ---------- Setup ----------
+# Setup
 load_dotenv()
 ASSETS = Path(__file__).parent / "assets"
 
@@ -19,7 +18,7 @@ st.set_page_config(
     layout="centered",
 )
 
-# ---------- Helpers ----------
+# Helpers
 def b64(path: Path) -> str:
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode("utf-8")
@@ -51,7 +50,7 @@ def confetti():
         scrolling=False,
     )
 
-# ---------- Background video (permanent) ----------
+# Background video
 bg_b64 = b64(ASSETS / "bg.mp4")
 st.markdown(
     f"""
@@ -63,7 +62,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------- Global styles & Streamlit overrides ----------
+# Global app styles & Streamlit overrides
 logo_b64 = b64(ASSETS / "logo.png")
 st.markdown(
     f"""
@@ -166,7 +165,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------- Main Card (form + results) ----------
+# Main Card (form + results)
 with st.container():
     with st.form("trip_form", clear_on_submit=False):
         st.markdown('<span class="trovule-badge">Let’s plan your road trip</span>', unsafe_allow_html=True)
@@ -238,7 +237,7 @@ with st.container():
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------- Footer ----------
+# Footer
 year = datetime.now().year
 st.markdown(
     f"""
