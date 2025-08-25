@@ -191,7 +191,6 @@ with st.container():
                     md = generate_itinerary(origin.strip(), destination.strip(), int(duration))
 
                     # Weather “pills” with dotted route
-                    st.markdown("")
                     st.markdown('<div class="trovule-section-title">Quick weather peek</div>', unsafe_allow_html=True)
                     col1, col2, col3 = st.columns([1, 0.3, 1])
 
