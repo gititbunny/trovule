@@ -151,6 +151,10 @@ st.markdown(
       .trovule-itinerary {{ line-height:1.6; background:#EEE4BB; }}
       .footer {{ text-align:center; margin-top:24px; font-size:16px; }}
       .footer a {{ color: #ADCB00; text-decoration: none; }}
+      
+      [data-testid="stNotification"]{{ margin-top: 6px !important; margin-bottom: 6px !important; padding: 8px 12px !important; }}
+      div:has(> [data-testid="stNotification"]) + div {{ margin-top: 6px !important; }}
+
     </style>
 
     <!-- Header (logo → title → subtitle) -->
