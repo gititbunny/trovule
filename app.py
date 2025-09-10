@@ -154,6 +154,21 @@ st.markdown(
       
       [data-testid="stNotification"]{{ margin-top: 6px !important; margin-bottom: 6px !important; padding: 8px 12px !important; }}
       div:has(> [data-testid="stNotification"]) + div {{ margin-top: 6px !important; }}
+      
+      [data-testid="stElementContainer"]:has(> .stIFrame[title="st.iframe"]) {{
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        height: 0 !important;
+        overflow: visible !important; 
+      }}
+
+      .stIFrame[title="st.iframe"] {{
+        display: block;
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important; 
+      }}
 
     </style>
 
