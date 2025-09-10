@@ -152,7 +152,7 @@ st.markdown(
       .footer {{ text-align:center; margin-top:24px; font-size:16px; }}
       .footer a {{ color: #ADCB00; text-decoration: none; }}
       
-      [data-testid="stNotification"]{{ margin-top: 6px !important; margin-bottom: 6px !important; padding: 8px 12px !important; }}
+      [data-testid="stNotification"]{{ margin-top: 6px !important; margin-bottom: 2px !important; padding: 8px 12px !important; }}
       div:has(> [data-testid="stNotification"]) + div {{ margin-top: 6px !important; }}
       
       [data-testid="stElementContainer"]:has(> .stIFrame[title="st.iframe"]) {{
@@ -169,6 +169,35 @@ st.markdown(
         height: 0 !important;
         opacity: 0 !important; 
       }}
+
+      .trovule-itinerary{{
+        line-height: 1.6;
+        background: #EEE4BB;
+        padding: 12px 16px;
+        border-radius: 12px;
+        text-align: center;   
+      }}
+
+     
+      .trovule-itinerary ul,
+      .trovule-itinerary ol{{
+        display: inline-block;    
+        text-align: left;         
+        list-style-position: inside;
+        padding-left: 0;          
+        margin: 8px auto;        
+      }}
+
+      .trovule-itinerary li{{
+        margin: 6px 0;
+      }}
+
+      
+      .trovule-itinerary ul,
+      .trovule-itinerary ol{{
+        max-width: 680px;
+      }}
+     
 
     </style>
 
@@ -239,9 +268,7 @@ with st.container():
                     # Itinerary card
                     st.markdown("")
                     st.markdown('<div class="trovule-section-title">Your blissful road trip plan</div>', unsafe_allow_html=True)
-                    st.markdown(md)  # Markdown from API
-                    st.markdown('</div>', unsafe_allow_html=True)
-
+                    st.markdown(f'<div class="trovule-itinerary">{md}</div>', unsafe_allow_html=True)
                     st.caption("Psst… prices are ZAR estimates and activities are suggestions...make it yours! 🧡")
 
                 except APIError as e:
