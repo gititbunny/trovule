@@ -1,11 +1,9 @@
 from pathlib import Path
 from datetime import datetime
 import base64
-
 import streamlit as st
 import streamlit.components.v1 as components
 from dotenv import load_dotenv
-
 from services.shecodes_client import current_weather, generate_itinerary, APIError
 
 # Setup
@@ -170,10 +168,10 @@ with st.container():
     with st.form("trip_form", clear_on_submit=False):
         st.markdown('<span class="trovule-badge">Let’s plan your road trip</span>', unsafe_allow_html=True)
         st.markdown("")
-        origin = st.text_input("Start city (origin)", placeholder="e.g., Johannesburg")
-        destination = st.text_input("Destination city", placeholder="e.g., Durban")
+        origin = st.text_input("Start city (origin)", placeholder="e.g. Johannesburg", help="Use a valid city/town name (not a landmark).")
+        destination = st.text_input("Destination city", placeholder="e.g. Durban",help="Use a valid city/town name (not a landmark).")
         duration = st.number_input("Trip length (days)", min_value=1, max_value=60, value=5, step=1)
-        submitted = st.form_submit_button("Generate my itinerary ✨")
+        submitted = st.form_submit_button("Generate my itinerary")
 
     if submitted:
         if not origin.strip() or not destination.strip():
