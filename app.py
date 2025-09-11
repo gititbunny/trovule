@@ -170,34 +170,26 @@ st.markdown(
         opacity: 0 !important; 
       }}
 
-      .trovule-itinerary{{
-        line-height: 1.6;
-        background: #EEE4BB;
-        padding: 12px 16px;
-        border-radius: 12px;
-        text-align: center;   
+
+      .trovule-itinerary {{ margin-top: 10px; margin-bottom: 10px; text-align: center; background: #ffffff85 !important; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.06);}}
+
+      .trovule-itinerary > * {{
+        display: inline-block;      
+        max-width: 720px;         
+        width: 100%;
+        margin: 0 auto;        
       }}
 
-     
       .trovule-itinerary ul,
-      .trovule-itinerary ol{{
-        display: inline-block;    
-        text-align: left;         
-        list-style-position: inside;
-        padding-left: 0;          
-        margin: 8px auto;        
+      .trovule-itinerary ol {{
+        list-style-position: inside; 
+        padding-left: 0;     
+        text-align: center;    
+        align-items: center;           
+        margin: 8px auto;
       }}
 
-      .trovule-itinerary li{{
-        margin: 6px 0;
-      }}
-
-      
-      .trovule-itinerary ul,
-      .trovule-itinerary ol{{
-        max-width: 680px;
-      }}
-     
+      .trovule-itinerary li {{ margin: 6px 0; }}
 
     </style>
 
@@ -266,9 +258,9 @@ with st.container():
                         )
 
                     # Itinerary card
-                    st.markdown("")
                     st.markdown('<div class="trovule-section-title">Your blissful road trip plan</div>', unsafe_allow_html=True)
                     st.markdown(f'<div class="trovule-itinerary">{md}</div>', unsafe_allow_html=True)
+
                     st.caption("Psst… prices are ZAR estimates and activities are suggestions...make it yours! 🧡")
 
                 except APIError as e:
