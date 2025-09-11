@@ -13,10 +13,9 @@ Python • Streamlit • requests • dotenv
 
 ```bash
 python -m venv .venv
-.\.venv\Scripts\activate      # Windows
-# source .venv/bin/activate   # macOS/Linux
+.\.venv\Scripts\activate
 
 python -m pip install -r requirements.txt
-copy .env.example .env        # add your API_API_KEY
+copy .env.example .env
 python -m streamlit run app.py
 ```
