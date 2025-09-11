@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 from dotenv import load_dotenv
 from services.shecodes_client import current_weather, generate_itinerary, APIError
 
-# Setup
+
 load_dotenv()
 ASSETS = Path(__file__).parent / "assets"
 
@@ -16,18 +16,16 @@ st.set_page_config(
     layout="centered",
 )
 
-# Helpers
 def b64(path: Path) -> str:
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode("utf-8")
 
 def confetti():
-    # fire canvas-confetti once;
     components.html(
         """
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
-          // A small burst, sunny palette
+          
           const colors = ['#FFC857','#F25F5C','#70C1B3','#FFE066','#247BA0'];
           confetti({
             particleCount: 160,
@@ -35,7 +33,7 @@ def confetti():
             origin: { y: 0.2 },
             colors
           });
-          // A second gentle burst
+          
           setTimeout(() => confetti({
             particleCount: 120,
             spread: 100,
@@ -48,7 +46,7 @@ def confetti():
         scrolling=False,
     )
 
-# Background video
+
 bg_b64 = b64(ASSETS / "bg.mp4")
 st.markdown(
     f"""
@@ -60,12 +58,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Global app styles & Streamlit overrides
 logo_b64 = b64(ASSETS / "logo.png")
 st.markdown(
     f"""
     <style>
-      /* Keep video always visible */
       #trovule-bg {{
         position: fixed;
         inset: 0;
@@ -75,7 +71,7 @@ st.markdown(
         z-index: -3;
         filter: brightness(0.98) saturate(1.06);
       }}
-      /* Gradient veil for contrast on text */
+
       .trovule-mask {{
         position: fixed;
         inset: 0;
@@ -87,7 +83,6 @@ st.markdown(
         pointer-events: none;
       }}
 
-      /* Make Streamlit fully transparent where needed */
       html, body, [data-testid="stAppViewContainer"], .stApp, .main, [data-testid="block-container"] {{
         background: transparent !important; color: #000000 !important; text-align:center; font-size:16px;
       }}
@@ -96,7 +91,6 @@ st.markdown(
         .block-container {{ max-width: 860px !important; }}
       }}
 
-      /* Sunny Postcard theme */
       .trovule-header {{
         display:flex; flex-direction:column; align-items:center; gap:8px;
         text-align:center; margin: 18px auto 8px auto;
@@ -116,7 +110,6 @@ st.markdown(
 
       .trovule-section-title {{ font-weight:700; font-size:16px; margin: 12px 0 6px 0; margin-bottom:10px;}}
 
-      /* Inputs & button polish */
       label {{ font-weight: 600; }}
       .stTextInput>div>div>input, .stNumberInput input {{
         border-radius: 12px !important;
@@ -135,7 +128,6 @@ st.markdown(
       }}
       .stButton>button:hover {{ transform: translateY(-1px); }}
 
-      /* Weather pills with dotted route */
       .trovule-pill {{
         background:#E9F3FF; border:1px solid rgba(0,0,0,.06); border-radius:16px;
         padding:14px; box-shadow:0 6px 18px rgba(0,0,0,.06);
@@ -170,9 +162,7 @@ st.markdown(
         opacity: 0 !important; 
       }}
 
-
       .trovule-itinerary {{ margin-top: 10px; margin-bottom: 10px; text-align: center; background: #ffffff85 !important; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.06);}}
-
       .trovule-itinerary > * {{
         display: inline-block;      
         max-width: 720px;         
@@ -193,7 +183,6 @@ st.markdown(
 
     </style>
 
-    <!-- Header (logo → title → subtitle) -->
     <div class="trovule-header">
       <img src="data:image/png;base64,{logo_b64}" class="trovule-logo" alt="Trovule logo" />
       <div class="trovule-title">Trovule</div>
@@ -203,7 +192,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Main Card (form + results)
 with st.container():
     with st.form("trip_form", clear_on_submit=False):
         st.markdown('<span class="trovule-badge">Let’s plan your road trip</span>', unsafe_allow_html=True)
@@ -228,7 +216,6 @@ with st.container():
 
                     md = generate_itinerary(origin.strip(), destination.strip(), int(duration))
 
-                    # Weather “pills” with dotted route
                     st.markdown('<div class="trovule-section-title">Quick weather peek</div>', unsafe_allow_html=True)
                     col1, col2, col3 = st.columns([1, 0.3, 1])
 
@@ -257,7 +244,6 @@ with st.container():
                             """, unsafe_allow_html=True
                         )
 
-                    # Itinerary card
                     st.markdown('<div class="trovule-section-title">Your blissful road trip plan</div>', unsafe_allow_html=True)
                     st.markdown(f'<div class="trovule-itinerary">{md}</div>', unsafe_allow_html=True)
 
@@ -272,7 +258,6 @@ with st.container():
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer
 year = datetime.now().year
 st.markdown(
     f"""
