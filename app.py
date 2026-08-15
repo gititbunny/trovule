@@ -472,7 +472,7 @@ st.markdown(
     <div class="footer">
       Created with love 💗 for travelers 🚗🗺.<br/>
       © {year} All rights reserved. Built by
-      <a href="https://github.com/gititbunny" target="_blank" rel="noopener">Anin Laust</a>.
+      <a href="https://github.com/gititbunny" target="_blank" rel="noopener">Git It Bunny</a>.
     </div>
     """,
     unsafe_allow_html=True,
