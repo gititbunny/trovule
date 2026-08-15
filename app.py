@@ -2,11 +2,9 @@ from pathlib import Path
 from datetime import datetime
 import base64
 import html
-
 import streamlit as st
 import streamlit.components.v1 as components
 from dotenv import load_dotenv
-
 from services.shecodes_client import APIError, current_weather, generate_itinerary
 
 
