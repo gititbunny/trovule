@@ -298,6 +298,21 @@ st.markdown(
           color: #777 !important;
           opacity: 1 !important;
         }}
+        
+        /* Generate itinerary button */
+        [data-testid="stFormSubmitButton"] button {{
+            background: linear-gradient(90deg, #FFD166, #FF9F1C) !important;
+            color: #1b1b1b !important;
+            font-weight: 700 !important;
+            border: none !important;
+            border-radius: 12px !important;
+        }}
+
+        /* Generate itinerary button hover */
+        [data-testid="stFormSubmitButton"] button:hover {{
+            color: #1b1b1b !important;
+            border: none !important;
+        }}
     </style>
 
     <div class="trovule-header">
