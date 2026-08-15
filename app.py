@@ -277,6 +277,27 @@ st.markdown(
         color: #ADCB00;
         text-decoration: none;
       }}
+      
+      /* Keep Streamlit form text readable */
+        [data-testid="stWidgetLabel"],
+        [data-testid="stWidgetLabel"] p,
+        .stTextInput label,
+        .stNumberInput label {{
+          color: #1b1b1b !important;
+          opacity: 1 !important;
+        }}
+
+        /* Input text */
+        .stTextInput input,
+        .stNumberInput input {{
+          color: #1b1b1b !important;
+        }}
+
+        /* Placeholder text */
+        .stTextInput input::placeholder {{
+          color: #777 !important;
+          opacity: 1 !important;
+        }}
     </style>
 
     <div class="trovule-header">
