@@ -1,12 +1,16 @@
 from pathlib import Path
 from datetime import datetime
 import base64
+import html
+
 import streamlit as st
 import streamlit.components.v1 as components
 from dotenv import load_dotenv
-from services.shecodes_client import current_weather, generate_itinerary, APIError
+
+from services.shecodes_client import APIError, current_weather, generate_itinerary
 
 
+# ---------- Setup ----------
 load_dotenv()
 ASSETS = Path(__file__).parent / "assets"
 
@@ -16,37 +20,45 @@ st.set_page_config(
     layout="centered",
 )
 
-def b64(path: Path) -> str:
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode("utf-8")
 
-def confetti():
+# ---------- Helpers ----------
+def b64(path: Path) -> str:
+    """Return a local asset as a base64 string for embedding in the page."""
+    with path.open("rb") as file:
+        return base64.b64encode(file.read()).decode("utf-8")
+
+
+def confetti() -> None:
+    """Show a short celebration without adding vertical space to the page."""
     components.html(
         """
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
-          
-          const colors = ['#FFC857','#F25F5C','#70C1B3','#FFE066','#247BA0'];
+          const colors = ['#FFC857', '#F25F5C', '#70C1B3', '#FFE066', '#247BA0'];
+
           confetti({
             particleCount: 160,
             spread: 70,
             origin: { y: 0.2 },
-            colors
+            colors: colors
           });
-          
-          setTimeout(() => confetti({
-            particleCount: 120,
-            spread: 100,
-            origin: { y: 0.2 },
-            colors
-          }), 300);
+
+          setTimeout(() => {
+            confetti({
+              particleCount: 120,
+              spread: 100,
+              origin: { y: 0.2 },
+              colors: colors
+            });
+          }, 300);
         </script>
         """,
-        height=0,
+        height=1,
         scrolling=False,
     )
 
 
+# ---------- Background video ----------
 bg_b64 = b64(ASSETS / "bg.mp4")
 st.markdown(
     f"""
@@ -58,10 +70,13 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+
+# ---------- Global styles + header ----------
 logo_b64 = b64(ASSETS / "logo.png")
 st.markdown(
     f"""
     <style>
+      /* Background */
       #trovule-bg {{
         position: fixed;
         inset: 0;
@@ -76,196 +91,355 @@ st.markdown(
         position: fixed;
         inset: 0;
         z-index: -2;
-        background: linear-gradient(180deg,
+        background: linear-gradient(
+          180deg,
           rgba(255,255,255,.55) 0%,
           rgba(255,255,255,.70) 38%,
-          rgba(255,255,255,.82) 100%);
+          rgba(255,255,255,.82) 100%
+        );
         pointer-events: none;
       }}
 
-      html, body, [data-testid="stAppViewContainer"], .stApp, .main, [data-testid="block-container"] {{
-        background: transparent !important; color: #000000 !important; text-align:center; font-size:16px;
-      }}
-      [data-testid="stToolbar"] {{ backdrop-filter: blur(6px); }}
-      @media (min-width: 900px) {{
-        .block-container {{ max-width: 860px !important; }}
+      /* Streamlit page */
+      html,
+      body,
+      [data-testid="stAppViewContainer"],
+      .stApp,
+      .main,
+      [data-testid="block-container"] {{
+        background: transparent !important;
+        color: #000000 !important;
+        text-align: center;
+        font-size: 16px;
       }}
 
-      .trovule-header {{
-        display:flex; flex-direction:column; align-items:center; gap:8px;
-        text-align:center; margin: 18px auto 8px auto;
+      [data-testid="stToolbar"] {{
+        backdrop-filter: blur(6px);
       }}
-      .trovule-logo {{ width: 96px; height:auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.12)); }}
-      .trovule-title {{ font-size: 32px; font-weight: 800; letter-spacing:.3px; color: #ADCB00; }}
+
+      @media (min-width: 900px) {{
+        .block-container {{
+          max-width: 860px !important;
+        }}
+      }}
+
+      /* Header */
+      .trovule-header {{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+        margin: 18px auto 8px auto;
+      }}
+
+      .trovule-logo {{
+        width: 96px;
+        height: auto;
+        filter: drop-shadow(0 6px 14px rgba(0,0,0,.12));
+      }}
+
+      .trovule-title {{
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: .3px;
+        color: #ADCB00;
+      }}
+
       .trovule-sub {{
-        font-size:16px; opacity:.9; margin-top:-2px;
-        background: linear-gradient(90deg,#FFECB3,#FFF); padding: 4px 10px; border-radius: 999px;
+        font-size: 16px;
+        opacity: .9;
+        margin-top: -2px;
+        background: linear-gradient(90deg, #FFECB3, #FFF);
+        padding: 4px 10px;
+        border-radius: 999px;
         border: 1px dashed rgba(0,0,0,.06);
       }}
-      
+
+      /* Form */
       .trovule-badge {{
-        display:inline-block; padding:6px 12px; border-radius:999px;
-        background:#FFF6D9; border:1px solid #ADCB00; color:#9A5A00; font-weight:700; font-size:16px;
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #FFF6D9;
+        border: 1px solid #ADCB00;
+        color: #9A5A00;
+        font-weight: 700;
+        font-size: 16px;
       }}
 
-      .trovule-section-title {{ font-weight:700; font-size:16px; margin: 12px 0 6px 0; margin-bottom:10px;}}
+      .trovule-section-title {{
+        font-weight: 700;
+        font-size: 16px;
+        margin: 12px 0 10px 0;
+      }}
 
-      label {{ font-weight: 600; }}
-      .stTextInput>div>div>input, .stNumberInput input {{
+      label {{
+        font-weight: 600;
+      }}
+
+      .stTextInput > div > div > input,
+      .stNumberInput input {{
         border-radius: 12px !important;
         border: 1px solid rgba(0,0,0,.12) !important;
         padding: 10px 12px !important;
         background: #fff !important;
       }}
-      .stButton>button {{
+
+      .stButton > button {{
         border-radius: 999px !important;
         padding: 10px 16px !important;
         font-weight: 700 !important;
         border: 0 !important;
         box-shadow: 0 6px 18px rgba(36,123,160,.18);
-        background: linear-gradient(90deg,#FFD166,#FF9F1C);
-        color:#1b1b1b;
+        background: linear-gradient(90deg, #FFD166, #FF9F1C);
+        color: #1b1b1b;
       }}
-      .stButton>button:hover {{ transform: translateY(-1px); }}
 
+      .stButton > button:hover {{
+        transform: translateY(-1px);
+      }}
+
+      /* Weather cards */
       .trovule-pill {{
-        background:#E9F3FF; border:1px solid rgba(0,0,0,.06); border-radius:16px;
-        padding:14px; box-shadow:0 6px 18px rgba(0,0,0,.06);
+        background: #E9F3FF;
+        border: 1px solid rgba(0,0,0,.06);
+        border-radius: 16px;
+        padding: 14px;
+        box-shadow: 0 6px 18px rgba(0,0,0,.06);
       }}
-      .trovule-pill .name {{ font-weight:700; margin:2px 0 6px 0; }}
-      .trovule-row {{ display:flex; align-items:center; gap:10px; }}
+
+      .trovule-pill .name {{
+        font-weight: 700;
+        margin: 2px 0 6px 0;
+      }}
+
       .trovule-route {{
-        flex:0 0 50px; height:2px; background-image: linear-gradient(90deg, #247BA0 33%, rgba(36,123,160,0) 0%);
-        background-size: 10px 2px; background-repeat: repeat-x; opacity:.6; margin-top: 34px;
+        height: 2px;
+        background-image: linear-gradient(
+          90deg,
+          #247BA0 33%,
+          rgba(36,123,160,0) 0%
+        );
+        background-size: 10px 2px;
+        background-repeat: repeat-x;
+        opacity: .6;
+        margin-top: 34px;
       }}
-      .trovule-emoji {{ font-size: 20px; margin-right:6px; }}
 
-      .trovule-itinerary {{ line-height:1.6; background:#EEE4BB; }}
-      .footer {{ text-align:center; margin-top:24px; font-size:16px; }}
-      .footer a {{ color: #ADCB00; text-decoration: none; }}
-      
-      [data-testid="stNotification"]{{ margin-top: 6px !important; margin-bottom: 2px !important; padding: 8px 12px !important; }}
-      div:has(> [data-testid="stNotification"]) + div {{ margin-top: 6px !important; }}
-      
-      [data-testid="stElementContainer"]:has(> .stIFrame[title="st.iframe"]) {{
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
+      .trovule-emoji {{
+        font-size: 20px;
+        margin-right: 6px;
+      }}
+
+      /* Itinerary
+         The AI response is rendered as Markdown by Streamlit. These rules keep
+         each list line centered while placing the bullet immediately before text. */
+      [data-testid="stMarkdownContainer"] ul,
+      [data-testid="stMarkdownContainer"] ol {{
+        list-style-position: inside;
+        padding-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }}
+
+      [data-testid="stMarkdownContainer"] li {{
+        text-align: center;
+        margin: 6px 0;
+      }}
+
+      /* Keep the confetti iframe out of normal document flow. */
+      [data-testid="stElementContainer"]:has(> iframe[title="st.iframe"]) {{
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
         padding: 0 !important;
-        height: 0 !important;
-        overflow: visible !important; 
+        overflow: visible !important;
       }}
 
-      .stIFrame[title="st.iframe"] {{
-        display: block;
-        width: 0 !important;
-        height: 0 !important;
-        opacity: 0 !important; 
+      iframe[title="st.iframe"] {{
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        border: 0 !important;
+        z-index: 9999 !important;
+        pointer-events: none !important;
       }}
 
-      .trovule-itinerary {{ margin-top: 10px; margin-bottom: 10px; text-align: center; background: #ffffff85 !important; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.06);}}
-      .trovule-itinerary > * {{
-        display: inline-block;      
-        max-width: 720px;         
-        width: 100%;
-        margin: 0 auto;        
+      /* Footer */
+      .footer {{
+        text-align: center;
+        margin-top: 24px;
+        font-size: 16px;
       }}
 
-      .trovule-itinerary ul,
-      .trovule-itinerary ol {{
-        list-style-position: inside; 
-        padding-left: 0;     
-        text-align: center;    
-        align-items: center;           
-        margin: 8px auto;
+      .footer a {{
+        color: #ADCB00;
+        text-decoration: none;
       }}
-
-      .trovule-itinerary li {{ margin: 6px 0; }}
-
     </style>
 
     <div class="trovule-header">
-      <img src="data:image/png;base64,{logo_b64}" class="trovule-logo" alt="Trovule logo" />
+      <img
+        src="data:image/png;base64,{logo_b64}"
+        class="trovule-logo"
+        alt="Trovule logo"
+      />
       <div class="trovule-title">Trovule</div>
-      <div class="trovule-sub">Happy, playful, and blissfully simple road trip planning, made just for you.</div>
+      <div class="trovule-sub">
+        Happy, playful, and blissfully simple road trip planning, made just for you.
+      </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
+
+# ---------- Trip planner ----------
 with st.container():
     with st.form("trip_form", clear_on_submit=False):
-        st.markdown('<span class="trovule-badge">Let’s plan your road trip</span>', unsafe_allow_html=True)
-        st.markdown("")
-        origin = st.text_input("Start city (origin)", placeholder="e.g. Johannesburg", help="Use a valid city/town name (not a landmark).")
-        destination = st.text_input("Destination city", placeholder="e.g. Durban",help="Use a valid city/town name (not a landmark).")
-        duration = st.number_input("Trip length (days)", min_value=1, max_value=60, value=5, step=1)
+        st.markdown(
+            '<span class="trovule-badge">Let’s plan your road trip</span>',
+            unsafe_allow_html=True,
+        )
+
+        origin = st.text_input(
+            "Start city (origin)",
+            placeholder="e.g. Johannesburg",
+            help="Use a valid city or town name, not a landmark or tourist attraction.",
+        )
+
+        destination = st.text_input(
+            "Destination city",
+            placeholder="e.g. Durban",
+            help="Use a valid city or town name, not a landmark or tourist attraction.",
+        )
+
+        duration = st.number_input(
+            "Trip length (days)",
+            min_value=1,
+            max_value=60,
+            value=5,
+            step=1,
+        )
+
         submitted = st.form_submit_button("Generate my itinerary")
 
     if submitted:
-        if not origin.strip() or not destination.strip():
+        origin_clean = origin.strip()
+        destination_clean = destination.strip()
+
+        if not origin_clean or not destination_clean:
             st.warning("Please enter both origin and destination.")
+        elif origin_clean.casefold() == destination_clean.casefold():
+            st.warning("Please enter two different cities for your road trip.")
         else:
-            with st.spinner("Gathering sunshine, checking skies, and plotting delight..."):
+            with st.spinner(
+                "Gathering sunshine, checking skies, and plotting delight..."
+            ):
                 try:
-                    weather_o = current_weather(origin.strip())
-                    weather_d = current_weather(destination.strip())
+                    weather_o = current_weather(origin_clean)
+                    weather_d = current_weather(destination_clean)
+                    itinerary_md = generate_itinerary(
+                        origin_clean,
+                        destination_clean,
+                        int(duration),
+                    )
 
-                
-                    st.success("Weather checked! Now crafting your itinerary…")
-                    confetti()  
+                    st.success("Weather checked! Your itinerary is ready.")
+                    confetti()
 
-                    md = generate_itinerary(origin.strip(), destination.strip(), int(duration))
+                    # Escape user-entered city names before inserting them into HTML.
+                    origin_html = html.escape(origin_clean.title())
+                    destination_html = html.escape(destination_clean.title())
 
-                    st.markdown('<div class="trovule-section-title">Quick weather peek</div>', unsafe_allow_html=True)
+                    # Weather summary
+                    st.markdown(
+                        '<div class="trovule-section-title">Quick weather peek</div>',
+                        unsafe_allow_html=True,
+                    )
                     col1, col2, col3 = st.columns([1, 0.3, 1])
 
                     with col1:
                         st.markdown(
                             f"""
                             <div class="trovule-pill">
-                              <div class="trovule-small">Origin</div>
-                              <div class="name">{origin.strip().title()}</div>
-                              <div><span class="trovule-emoji">🌡️</span>{weather_o['temperature']}°C</div>
-                              <div><span class="trovule-emoji">🌤️</span>{weather_o['condition'].title()}</div>
+                              <div>Origin</div>
+                              <div class="name">{origin_html}</div>
+                              <div>
+                                <span class="trovule-emoji">🌡️</span>
+                                {weather_o['temperature']}°C
+                              </div>
+                              <div>
+                                <span class="trovule-emoji">🌤️</span>
+                                {html.escape(weather_o['condition'].title())}
+                              </div>
                             </div>
-                            """, unsafe_allow_html=True
+                            """,
+                            unsafe_allow_html=True,
                         )
+
                     with col2:
-                        st.markdown('<div class="trovule-route"></div>', unsafe_allow_html=True)
+                        st.markdown(
+                            '<div class="trovule-route"></div>',
+                            unsafe_allow_html=True,
+                        )
+
                     with col3:
                         st.markdown(
                             f"""
                             <div class="trovule-pill">
-                              <div class="trovule-small">Destination</div>
-                              <div class="name">{destination.strip().title()}</div>
-                              <div><span class="trovule-emoji">🌡️</span>{weather_d['temperature']}°C</div>
-                              <div><span class="trovule-emoji">🌤️</span>{weather_d['condition'].title()}</div>
+                              <div>Destination</div>
+                              <div class="name">{destination_html}</div>
+                              <div>
+                                <span class="trovule-emoji">🌡️</span>
+                                {weather_d['temperature']}°C
+                              </div>
+                              <div>
+                                <span class="trovule-emoji">🌤️</span>
+                                {html.escape(weather_d['condition'].title())}
+                              </div>
                             </div>
-                            """, unsafe_allow_html=True
+                            """,
+                            unsafe_allow_html=True,
                         )
 
-                    st.markdown('<div class="trovule-section-title">Your blissful road trip plan</div>', unsafe_allow_html=True)
-                    st.markdown(f'<div class="trovule-itinerary">{md}</div>', unsafe_allow_html=True)
+                    # Itinerary
+                    st.markdown(
+                        '<div class="trovule-section-title">Your blissful road trip plan</div>',
+                        unsafe_allow_html=True,
+                    )
 
-                    st.caption("Psst… prices are ZAR estimates and activities are suggestions...make it yours! 🧡")
+                    # Render the API response as real Markdown instead of placing raw
+                    # Markdown inside an HTML div. This keeps headings, bold text and
+                    # bullets working correctly.
+                    st.markdown(itinerary_md)
 
-                except APIError as e:
-                    st.error(str(e))
-                except Exception as e:
-                    st.error(f"Unexpected error: {e}")
+                    st.caption(
+                        "Psst… prices are ZAR estimates and activities are suggestions — make it yours! 🧡"
+                    )
+
+                except APIError as exc:
+                    st.error(str(exc))
+                except Exception as exc:
+                    st.error(f"Unexpected error: {exc}")
     else:
-        st.info("Tell me where you’re going and how long, and I’ll craft a short, road trip plan with daily ZAR estimates.")
+        st.info(
+            "Tell me where you’re going and how long, and I’ll craft a short road trip plan with daily ZAR estimates."
+        )
 
-    st.markdown('</div>', unsafe_allow_html=True)
 
+# ---------- Footer ----------
 year = datetime.now().year
 st.markdown(
     f"""
     <div class="footer">
       Created with love 💗 for travelers 🚗🗺.<br/>
       © {year} All rights reserved. Built by
-      <a href="https://github.com/gititbunny" target="_blank" rel="noopener">Nina Nkhwashu</a>.
+      <a href="https://github.com/gititbunny" target="_blank" rel="noopener">Anin Laust</a>.
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
