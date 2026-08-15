@@ -91,9 +91,9 @@ st.markdown(
         z-index: -2;
         background: linear-gradient(
           180deg,
-          rgba(255,255,255,.55) 0%,
-          rgba(255,255,255,.70) 38%,
-          rgba(255,255,255,.82) 100%
+          rgba(255,255,255,.25) 0%,
+          rgba(255,255,255,.35) 38%,
+          rgba(255,255,255,.48) 100%
         );
         pointer-events: none;
       }}
