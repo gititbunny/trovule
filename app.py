@@ -264,7 +264,7 @@ st.markdown(
     <div class="footer">
       Created with love 💗 for travelers 🚗🗺.<br/>
       © {year} All rights reserved. Built by
-      <a href="https://www.linkedin.com/in/ninankhwashu/" target="_blank" rel="noopener">Nina Nkhwashu</a>.
+      <a href="https://github.com/gititbunny" target="_blank" rel="noopener">Nina Nkhwashu</a>.
     </div>
     """,
     unsafe_allow_html=True
