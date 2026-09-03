@@ -294,6 +294,105 @@ function Home() {
             </div>
           </div>
         </section>
+
+        {/* Technology */}
+        <section className="technology-section" id="technology">
+          <div className="technology-container">
+            <div className="technology-intro">
+              <span className="section-label">Behind Trovule</span>
+
+              <h2>
+                Travel planning,
+                <br />
+                <span>built with real APIs.</span>
+              </h2>
+
+              <p>
+                Trovule combines a React interface with Python-powered API logic
+                to turn simple trip details into useful weather information and
+                generated road-trip plans.
+              </p>
+            </div>
+
+            <div className="technology-grid">
+              <article className="technology-card technology-card-dark">
+                <span className="technology-number">01</span>
+
+                <div>
+                  <span className="technology-type">Frontend</span>
+                  <h3>React + JavaScript</h3>
+                  <p>
+                    A responsive product interface built with reusable React
+                    components and custom CSS.
+                  </p>
+                </div>
+
+                <div className="technology-tags">
+                  <span>React</span>
+                  <span>JavaScript</span>
+                  <span>CSS</span>
+                </div>
+              </article>
+
+              <article className="technology-card">
+                <span className="technology-number">02</span>
+
+                <div>
+                  <span className="technology-type">Application logic</span>
+                  <h3>Python</h3>
+                  <p>
+                    Python handles the external service requests, response
+                    validation and trip-generation logic behind the application.
+                  </p>
+                </div>
+
+                <div className="technology-tags">
+                  <span>Python</span>
+                  <span>Requests</span>
+                  <span>dotenv</span>
+                </div>
+              </article>
+
+              <article className="technology-card">
+                <span className="technology-number">03</span>
+
+                <div>
+                  <span className="technology-type">Data</span>
+                  <h3>REST API integration</h3>
+                  <p>
+                    Weather and AI services provide the live information used to
+                    build each generated road-trip plan.
+                  </p>
+                </div>
+
+                <div className="technology-tags">
+                  <span>Weather API</span>
+                  <span>AI API</span>
+                  <span>JSON</span>
+                </div>
+              </article>
+
+              <article className="technology-card technology-card-lime">
+                <span className="technology-number">04</span>
+
+                <div>
+                  <span className="technology-type">Configuration</span>
+                  <h3>Protected API credentials</h3>
+                  <p>
+                    Environment variables keep API credentials outside the
+                    application source code and Git repository.
+                  </p>
+                </div>
+
+                <div className="technology-tags">
+                  <span>.env</span>
+                  <span>.gitignore</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
   );
