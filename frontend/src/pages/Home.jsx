@@ -117,6 +117,82 @@ function Home() {
             </div>
           </div>
         </section>
+
+        {/* How It Works */}
+        <section className="how-it-works" id="how-it-works">
+          <div className="how-container">
+            <div className="section-heading">
+              <span className="section-label">How it works</span>
+
+              <h2>
+                From idea to road trip
+                <br />
+                in <span>three simple steps.</span>
+              </h2>
+
+              <p>
+                Tell Trovule where you are going and how long you have. It
+                handles the planning from there.
+              </p>
+            </div>
+
+            <div className="how-grid">
+              <article className="how-card how-card-lime">
+                <div className="how-number">01</div>
+
+                <div>
+                  <span className="how-kicker">Choose your route</span>
+                  <h3>Where are you heading?</h3>
+                  <p>
+                    Enter your starting point, destination and the number of
+                    days you want to travel.
+                  </p>
+                </div>
+
+                <div className="mini-route">
+                  <span>JHB</span>
+                  <div className="mini-route-line"></div>
+                  <span>DBN</span>
+                </div>
+              </article>
+
+              <article className="how-card how-card-light">
+                <div className="how-number">02</div>
+
+                <div>
+                  <span className="how-kicker">Check the weather</span>
+                  <h3>Know what to expect.</h3>
+                  <p>
+                    Trovule checks current conditions for your route so the
+                    trip starts with useful context.
+                  </p>
+                </div>
+
+                <div className="weather-chip-row">
+                  <span className="weather-chip">☀ 24° JHB</span>
+                  <span className="weather-chip">☀ 27° DBN</span>
+                </div>
+              </article>
+
+              <article className="how-card how-card-dark">
+                <div className="how-number">03</div>
+
+                <div>
+                  <span className="how-kicker">Generate your plan</span>
+                  <h3>Get your day-by-day trip.</h3>
+                  <p>
+                    Receive itinerary ideas and estimated costs in South
+                    African Rand, ready for you to explore.
+                  </p>
+                </div>
+
+                <Link to="/planner" className="how-card-link">
+                  Start planning →
+                </Link>
+              </article>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );
