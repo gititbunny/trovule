@@ -2,12 +2,18 @@ import { Link } from "react-router-dom";
 import "../styles/Footer.css";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="site-footer">
       <div className="footer-container">
         <div className="footer-brand">
           <Link to="/" aria-label="Trovule home">
-            <img src="/assets/logo.png" alt="Trovule" className="footer-logo" />
+            <img
+              src="/assets/logo.png"
+              alt="Trovule"
+              className="footer-logo"
+            />
           </Link>
 
           <p>
@@ -24,8 +30,15 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span>Trovule</span>
-        <span>Built with React + Python</span>
+        <p>
+          © {currentYear} Trovule. All rights reserved.
+        </p>
+
+        <p className="footer-credit">
+          Designed & developed by <strong>Git It Bunny</strong>
+        </p>
+
+        <p>React + Python</p>
       </div>
     </footer>
   );
