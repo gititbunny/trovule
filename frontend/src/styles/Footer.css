@@ -50,11 +50,14 @@
   color: #cfff36;
 }
 
+/* Footer Credits */
 .footer-bottom {
-  margin-top: 65px;
+  width: min(1180px, calc(100% - 40px));
+  margin: 65px auto 0;
   padding-top: 22px;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
 
@@ -62,6 +65,11 @@
 
   color: #77776f;
   font-size: 0.78rem;
+}
+
+.footer-credit strong {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 
@@ -84,5 +92,7 @@
 
   .footer-bottom {
     margin-top: 45px;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
