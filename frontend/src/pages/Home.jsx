@@ -394,7 +394,37 @@ function Home() {
           </div>
         </section>
 
+        {/* Final CTA */}
+        <section className="final-cta">
+          <div className="final-cta-container">
+            <span className="final-cta-label">Ready when you are.</span>
+
+            <h2>
+              Pick a destination.
+              <br />
+              <span>Let Trovule plan the rest.</span>
+            </h2>
+
+            <p>
+              Add your route and trip duration, then generate weather-aware
+              itinerary ideas with estimated costs in ZAR.
+            </p>
+
+            <Link to="/planner" className="final-cta-button">
+              Plan Your Trip →
+            </Link>
+
+            <div className="final-cta-route" aria-hidden="true">
+              <span className="cta-location">START</span>
+              <div className="cta-route-line">
+                <span></span>
+              </div>
+              <span className="cta-location">GO</span>
+            </div>
+          </div>
+        </section>
       </main>
+      <Footer />
     </div>
   );
 }
