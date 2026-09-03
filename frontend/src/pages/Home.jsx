@@ -193,6 +193,107 @@ function Home() {
             </div>
           </div>
         </section>
+
+        {/* Core Features */}
+        <section className="features-section">
+          <div className="features-container">
+            <div className="features-heading">
+              <span className="section-label">Built for the road</span>
+
+              <h2>
+                The useful stuff,
+                <br />
+                <span>all in one trip plan.</span>
+              </h2>
+            </div>
+
+            <div className="features-layout">
+              <article className="feature-card feature-weather">
+                <div className="feature-card-copy">
+                  <span className="feature-tag">Weather</span>
+
+                  <h3>Start with the conditions.</h3>
+
+                  <p>
+                    Check current weather for your starting point and
+                    destination before building the rest of your trip.
+                  </p>
+                </div>
+
+                <div className="feature-weather-visual">
+                  <div className="feature-weather-main">
+                    <span>Durban</span>
+                    <strong>27°</strong>
+                    <small>Warm & sunny</small>
+                  </div>
+
+                  <div className="feature-sun">☀</div>
+                </div>
+              </article>
+
+              <article className="feature-card feature-itinerary">
+                <div className="feature-card-copy">
+                  <span className="feature-tag">AI itinerary</span>
+
+                  <h3>A plan for every day.</h3>
+
+                  <p>
+                    Trovule generates a simple day-by-day itinerary based on
+                    your route and trip duration.
+                  </p>
+                </div>
+
+                <div className="feature-days">
+                  <div className="feature-day">
+                    <span>01</span>
+                    <div>
+                      <strong>Departure</strong>
+                      <small>Start the journey</small>
+                    </div>
+                  </div>
+
+                  <div className="feature-day">
+                    <span>02</span>
+                    <div>
+                      <strong>Explore</strong>
+                      <small>Stops & activities</small>
+                    </div>
+                  </div>
+
+                  <div className="feature-day">
+                    <span>03</span>
+                    <div>
+                      <strong>Destination</strong>
+                      <small>Arrive & discover</small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-card feature-budget">
+                <div className="feature-card-copy">
+                  <span className="feature-tag">ZAR estimates</span>
+
+                  <h3>Plan with local costs in mind.</h3>
+
+                  <p>
+                    Trip suggestions include estimated daily costs in South
+                    African Rand, keeping the plan relevant for local travel.
+                  </p>
+                </div>
+
+                <div className="budget-visual">
+                  <div>
+                    <span>Estimated day</span>
+                    <strong>R1,250</strong>
+                  </div>
+
+                  <span className="budget-badge">ZAR</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );
