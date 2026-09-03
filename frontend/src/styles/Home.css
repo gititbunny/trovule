@@ -476,3 +476,225 @@
     top: 50px;
   }
 }
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how-it-works {
+  padding: 120px 0;
+  background: #ffffff;
+}
+
+.how-container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 55px;
+}
+
+.section-label {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7657ff;
+}
+
+.section-heading h2 {
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.section-heading h2 span {
+  color: #7657ff;
+}
+
+.section-heading p {
+  max-width: 600px;
+  margin-top: 22px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #66675f;
+}
+
+
+/* Cards */
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.how-card {
+  min-height: 430px;
+  padding: 28px;
+  border-radius: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.how-card-lime {
+  background: #cfff36;
+}
+
+.how-card-light {
+  background: #f3f3ee;
+}
+
+.how-card-dark {
+  background: #171717;
+  color: #ffffff;
+}
+
+.how-number {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.how-card-dark .how-number {
+  background: #7657ff;
+}
+
+.how-kicker {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  opacity: 0.65;
+}
+
+.how-card h3 {
+  margin-bottom: 14px;
+
+  font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.how-card p {
+  line-height: 1.65;
+  font-size: 0.94rem;
+  opacity: 0.72;
+}
+
+
+/* Mini Route */
+
+.mini-route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.mini-route-line {
+  flex: 1;
+  height: 2px;
+  background: #171717;
+}
+
+
+/* Weather Chips */
+
+.weather-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.weather-chip {
+  padding: 11px 14px;
+
+  background: #ffffff;
+  border-radius: 999px;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+
+/* Card CTA */
+
+.how-card-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  min-height: 48px;
+  padding: 0 18px;
+
+  background: #cfff36;
+  color: #171717;
+  border-radius: 999px;
+
+  font-weight: 800;
+}
+
+.how-card-link:hover {
+  background: #bdec26;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .how-card {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .how-it-works {
+    padding: 85px 0;
+  }
+
+  .how-container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .section-heading {
+    margin-bottom: 38px;
+  }
+
+  .how-card {
+    min-height: 330px;
+    padding: 23px;
+    border-radius: 24px;
+  }
+}
