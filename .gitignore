@@ -1,6 +1,14 @@
-.venv/
 .env
+
+.venv/
+backend/.venv/
+
 __pycache__/
 *.pyc
-.streamlit/
-.vercel
+
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+.vercel/
+backend/.vercel/
