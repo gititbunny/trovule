@@ -87,7 +87,7 @@ function Planner() {
                   <h2>Plan your road trip</h2>
                 </div>
 
-                <span className="form-step">●◯●</span>
+                <span className="form-step">◯●◯</span>
               </div>
 
               <div className="form-grid">
