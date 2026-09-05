@@ -16,13 +16,13 @@ function Header() {
         <nav className="main-nav" aria-label="Main navigation">
           <NavLink to="/">Home</NavLink>
 
-          <Link to="/#how-it-works">
+          <a href="/#how-it-works">
             How It Works
-          </Link>
+          </a>
 
-          <Link to="/#technology">
+          <a href="/#technology">
             Technology
-          </Link>
+          </a>
 
           <Link to="/planner" className="planner-link">
             Plan Your Trip
