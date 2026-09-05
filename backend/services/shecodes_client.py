@@ -1,40 +1,27 @@
 import os
+
 import requests
 
 
 class APIError(Exception):
-    """Friendly exception for API/configuration failures shown in the UI."""
+    """Friendly exception for API and configuration failures."""
 
 
 def _get_api_key() -> str:
-    """Read the SheCodes key from Streamlit Secrets or the local environment."""
-
-    try:
-        import streamlit as st
-
-        if "SHECODES_API_KEY" in st.secrets:
-            key = str(st.secrets["SHECODES_API_KEY"]).strip()
-
-            if key:
-                return key
-
-    except Exception:
-        # Local development may not have Streamlit Secrets configured.
-        pass
+    """Read the SheCodes API key from the environment."""
 
     api_key = os.getenv("SHECODES_API_KEY", "").strip()
 
     if not api_key:
         raise APIError(
-            "Missing API key. Set SHECODES_API_KEY in .env (local) "
-            "or Streamlit Secrets (cloud)."
+            "Missing API key. Set SHECODES_API_KEY in your environment."
         )
 
     return api_key
 
 
 def current_weather(location: str) -> dict:
-    """Return a normalized weather summary for a valid city/town."""
+    """Return a normalized weather summary for a valid city or town."""
 
     api_key = _get_api_key()
 
@@ -102,7 +89,7 @@ def generate_itinerary(
     destination: str,
     duration_days: int,
 ) -> str:
-    """Generate a concise Markdown road-trip itinerary using the SheCodes AI API."""
+    """Generate a concise Markdown road-trip itinerary."""
 
     api_key = _get_api_key()
 
