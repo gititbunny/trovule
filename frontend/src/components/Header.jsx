@@ -10,7 +10,10 @@ function Header() {
             src="/assets/logo.png"
             alt="Trovule"
             className="brand-logo"
-          />Trovule
+          />
+          <a href="/" className="brand-name">
+            Trovule
+          </a>
         </Link>
 
         <nav className="main-nav" aria-label="Main navigation">
