@@ -28,6 +28,12 @@
   object-fit: contain;
 }
 
+.brand-name {
+  margin-left: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
 /* Navigation */
 .main-nav {
   display: flex;
