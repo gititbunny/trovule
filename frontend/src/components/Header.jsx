@@ -8,12 +8,13 @@ function Header() {
         <Link to="/" className="brand-link" aria-label="Trovule home">
           <img
             src="/assets/logo.png"
-            alt="Trovule"
+            alt=""
             className="brand-logo"
           />
-          <a href="/" className="brand-name">
+
+          <span className="brand-name">
             Trovule
-          </a>
+          </span>
         </Link>
 
         <nav className="main-nav" aria-label="Main navigation">
