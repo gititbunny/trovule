@@ -1,4 +1,7 @@
-/* Header */
+/* =========================
+   HEADER
+========================= */
+
 .site-header {
   width: 100%;
   background: #ffffff;
@@ -9,16 +12,23 @@
   width: min(1180px, calc(100% - 40px));
   min-height: 82px;
   margin: 0 auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
 }
 
-/* Brand */
+
+/* =========================
+   BRAND
+========================= */
+
 .brand-link {
   display: inline-flex;
   align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
 }
 
 .brand-logo {
@@ -29,17 +39,24 @@
 }
 
 .brand-name {
-  margin-left: 12px;
-  font-size: 15rem;
-  font-weight: bold;
+  color: #171717;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -1.5px;
 }
 
-/* Navigation */
+
+/* =========================
+   NAVIGATION
+========================= */
+
 .main-nav {
   display: flex;
   align-items: center;
   gap: 30px;
-  font-size: 0.95rem;
+
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -55,9 +72,10 @@
 
 .planner-link {
   padding: 12px 19px;
-  border-radius: 999px;
+
   background: #d8ff47;
   color: #171717;
+  border-radius: 999px;
 }
 
 .main-nav .planner-link:hover {
@@ -65,15 +83,33 @@
   color: #171717;
 }
 
-/* Mobile */
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 720px) {
   .header-inner {
     width: min(100% - 28px, 1180px);
     min-height: 72px;
+    gap: 14px;
+  }
+
+  .brand-link {
+    gap: 8px;
   }
 
   .brand-logo {
-    height: 38px;
+    height: 36px;
+  }
+
+  .brand-name {
+    font-size: 27px;
+    letter-spacing: -1px;
+  }
+
+  .main-nav {
+    gap: 0;
   }
 
   .main-nav > a:not(.planner-link) {
@@ -81,7 +117,8 @@
   }
 
   .planner-link {
-    padding: 10px 16px;
-    font-size: 0.9rem;
+    padding: 10px 15px;
+    font-size: 14px;
+    white-space: nowrap;
   }
 }
